@@ -1,10 +1,10 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import LandingPage from '../components/LandingPage'
-import styles from '../styles/Home.module.css'
+import { fetchRankings } from '../utils'
+import { prisma } from '../db';
 
 const Home: NextPage = () => {
+
   return (
     <>
       <LandingPage/>
