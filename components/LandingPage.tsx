@@ -11,7 +11,6 @@ const LandingPage = () => {
     useEffect(() => {
         (async function () {
             const rankings = await fetchRankings();
-            console.log(rankings);
             setLatestRanking(rankings);
         })();            
     }, [latestUpdated]);

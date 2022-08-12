@@ -1,5 +1,7 @@
 import { RANKINGS_ENDPOINT } from "./routes";
 
+export const maxNumberGroups = 2;
+
 export const sendPostRequest = async (endpoint: string, data: {}) => {
     return fetch(endpoint, {
         method: 'POST',

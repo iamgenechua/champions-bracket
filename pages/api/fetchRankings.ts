@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../db';
+import {maxNumberGroups} from '../../utils'
 
 type Data = {
     error?: string,
@@ -12,11 +13,9 @@ export default async function handler(
     res: NextApiResponse<Data>
 ) {
 
-    const maxNoGroups = 2;
-
     const result: { [key: number]: any } = {};
 
-    for (let i: number = 1; i <= maxNoGroups; i++) {
+    for (let i: number = 1; i <= maxNumberGroups; i++) {
         // turn i into a string
         result[i] = await prisma.$queryRaw<[]>`
         SELECT "Result"."myTeam", "Result"."wins", "Result"."draws", "Result"."losses", "Result"."goalsFor", "Team"."registrationDate"
@@ -31,7 +30,5 @@ export default async function handler(
     `
     }
 
-
-
-    return res.status(200).json({ result });
+    return res.status(200).json(result);
 }
