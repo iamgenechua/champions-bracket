@@ -17,7 +17,6 @@ const LandingPage = () => {
         })();
         (async function () {
             const allMatches = await fetchMatches();
-            console.log("F", allMatches);
             setLatestMatches(allMatches);
         })();
 
@@ -25,6 +24,7 @@ const LandingPage = () => {
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '10vh 10vh', gap: '4em'}}>
+            <h1>WE THE CHAMPIONS</h1>
             <RankingsContainer latestRanking={latestRanking}/>
             <AddTeam setLatestUpdated={setLatestUpdated}/>
             <AddMatch setLatestUpdated={setLatestUpdated} latestMatches={latestMatches}/>

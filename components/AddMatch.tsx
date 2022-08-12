@@ -45,8 +45,6 @@ const columns: ColumnsType<DataType> = [
 
 const AddMatch = ({ setLatestUpdated, latestMatches }: AddMatchProps) => {
 
-    console.log(latestMatches);
-
     const addMatchInstructions = '<Team A name> <Team B name> <Team A goals scored> <Team B goals scored></Team>';
 
     const validateInput = (input: string) => {
@@ -110,7 +108,7 @@ const AddMatch = ({ setLatestUpdated, latestMatches }: AddMatchProps) => {
                 placeholder={addMatchInstructions}
                 enterButton='Add match' onSearch={handleSubmitMatch}
                 style={{ width: '40vw' }} />
-
+            <h2><u>Matches</u></h2>
             <Table columns={columns} dataSource={latestMatches} pagination={false}/>
         </>
     )
