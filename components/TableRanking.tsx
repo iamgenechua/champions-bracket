@@ -3,14 +3,14 @@ import { Space, Table, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 interface DataType {
-  key: string;
+  key: number;
   teamName: string;
   wins: number;
   draws: number;
   losses: number;
   goalsScored: number;
   registrationDate: string;
-  position: string;
+  position: number;
 }
 
 const columns: ColumnsType<DataType> = [
@@ -64,7 +64,7 @@ const columns: ColumnsType<DataType> = [
 const TableRanking = ({ groupNumber, ranking }: { groupNumber: number, ranking: [] }) => {
 
   // ranking map
-  const rankingMap = ranking.map((team,idx) => {
+  const rankingMap = ranking.map((team: any,idx) => {
     return {
       key: idx,
       teamName: team.myTeam,

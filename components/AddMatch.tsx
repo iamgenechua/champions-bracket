@@ -7,8 +7,8 @@ import type { ColumnsType } from 'antd/es/table';
 const { Search } = Input;
 
 type AddMatchProps = {
-    setLatestUpdated: (latestUpdated: any) => void
-    latestMatches: []
+    setLatestUpdated: (latestUpdated: any) => void;
+    latestMatches: any;
 }
 
 interface DataType {
