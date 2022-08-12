@@ -50,5 +50,22 @@ export default async function handler(
     })
   }
 
+  // update Result table with prisma
+  const teamResultTable = await prisma.result.create({
+    data: {
+      myTeam: teamName,
+      wins: 0,
+      draws: 0,
+      losses: 0,
+      goalsFor: 0,
+    }
+  });
+
+  if (!teamResultTable) {
+    return res.status(500).json({
+      error: 'Team result not created'
+    })
+  }
+
   return res.status(200).json({createdTeam});
 }

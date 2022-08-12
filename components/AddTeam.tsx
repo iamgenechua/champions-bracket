@@ -1,12 +1,16 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Button, Input, message } from 'antd'
-import { fetchRankings, sendPostRequest } from '../utils';
+import { sendPostRequest } from '../utils';
 import { ADD_TEAM_ENDPOINT } from '../routes';
 
 const { Search } = Input;
 
+type AddTeamProps = {
+    setLatestUpdated: (latestUpdated: any) => void
+}
 
-const AddTeam = ({setLatestUpdated}: {setLatestUpdated: (obj: {}) => void}) => {
+
+const AddTeam = ({setLatestUpdated}: AddTeamProps) => {
 
     const addTeamInstructions = '<Team name> <Team registration date in DD/MM> <Team group number (either 1 or 2)>';
 

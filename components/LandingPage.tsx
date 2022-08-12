@@ -11,16 +11,16 @@ const LandingPage = () => {
     useEffect(() => {
         (async function () {
             const rankings = await fetchRankings();
-            setLatestRanking(rankings.allTeams);
+            console.log(rankings);
+            setLatestRanking(rankings);
         })();            
     }, [latestUpdated]);
 
     return (
         <>
-            {latestRanking.map(team => team.teamName)}
-            <RankingsContainer />
+            <RankingsContainer latestRanking={latestRanking}/>
             <AddTeam setLatestUpdated={setLatestUpdated}/>
-            <AddMatch />
+            <AddMatch setLatestUpdated={setLatestUpdated} />
         </>
     )
 }
