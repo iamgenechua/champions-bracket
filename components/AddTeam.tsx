@@ -10,7 +10,7 @@ type AddTeamProps = {
 }
 
 
-const AddTeam = ({setLatestUpdated}: AddTeamProps) => {
+const AddTeam = ({ setLatestUpdated }: AddTeamProps) => {
 
     const addTeamInstructions = '<Team name> <Team registration date in DD/MM> <Team group number (either 1 or 2)>';
 
@@ -89,7 +89,9 @@ const AddTeam = ({setLatestUpdated}: AddTeamProps) => {
         <>
             <Search
                 placeholder={addTeamInstructions}
-                enterButton='Add team' onSearch={handleSubmitTeam} />
+                enterButton='Add team' onSearch={handleSubmitTeam}
+                style={{ width: '40vw' }}
+            />
         </>
     )
 }

@@ -1,15 +1,51 @@
 import React from 'react';
-import { Input, message } from 'antd';
 import { fetchMatches, sendPostRequest } from '../utils';
-import { ADD_MATCH_ENDPOINT, MATCHES_ENDPOINT } from '../routes';
+import { ADD_MATCH_ENDPOINT } from '../routes';
+import { Input, message, Table } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
 
 const { Search } = Input;
 
 type AddMatchProps = {
     setLatestUpdated: (latestUpdated: any) => void
+    latestMatches: []
 }
 
-const AddMatch = ({ setLatestUpdated }: AddMatchProps) => {
+interface DataType {
+    key: string;
+    team1: string;
+    goalsTeam1: number;
+    goalsTeam2: number;
+    team2Name: string;
+}
+
+const columns: ColumnsType<DataType> = [
+    {
+        title: 'Team 1',
+        dataIndex: 'team1Name',
+        key: 'team1Name',
+    },
+    {
+        title: 'Team 1 Goals',
+        dataIndex: 'goalsTeam1',
+        key: 'goalsTeam1',
+    },
+    {
+        title: 'Team 2 Goals',
+        dataIndex: 'goalsTeam2',
+        key: 'goalsTeam2',
+    },
+    {
+        title: 'Team 2',
+        dataIndex: 'team2Name',
+        key: 'team2Name',
+    },
+]
+
+
+const AddMatch = ({ setLatestUpdated, latestMatches }: AddMatchProps) => {
+
+    console.log(latestMatches);
 
     const addMatchInstructions = '<Team A name> <Team B name> <Team A goals scored> <Team B goals scored></Team>';
 
@@ -61,8 +97,6 @@ const AddMatch = ({ setLatestUpdated }: AddMatchProps) => {
             // get result of sendPostRequest from utils.ts
             const result = await sendPostRequest(ADD_MATCH_ENDPOINT, body);
             setLatestUpdated(result);
-            const allMatches = await fetchMatches();
-            console.log("AM", allMatches);
             message.success(`Match between ${teamAName} and ${teamBName} added successfully`);
         } catch (error) {
             message.error(`Error adding Match. Either the teams have played each other before or one of the teams does not exist.`);
@@ -71,9 +105,14 @@ const AddMatch = ({ setLatestUpdated }: AddMatchProps) => {
     }
 
     return (
-        <Search
-            placeholder={addMatchInstructions}
-            enterButton='Add match' onSearch={handleSubmitMatch} />
+        <>
+            <Search
+                placeholder={addMatchInstructions}
+                enterButton='Add match' onSearch={handleSubmitMatch}
+                style={{ width: '40vw' }} />
+
+            <Table columns={columns} dataSource={latestMatches} pagination={false}/>
+        </>
     )
 }
 

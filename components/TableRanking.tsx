@@ -24,7 +24,7 @@ const columns: ColumnsType<DataType> = [
           {position <= 4 ? 'QUALIFIED' : ''}
         </Tag>
         {' '}
-        
+
         {position}
       </>
     ),
@@ -79,10 +79,10 @@ const TableRanking = ({ groupNumber, ranking }: { groupNumber: number, ranking: 
 
   return (
     
-    <>
-      <div>{groupNumber}</div>
+    <div style={{display: 'flex', flexDirection: 'column'}}>
+      <h2>Group {groupNumber}</h2>
       <Table columns={columns} dataSource={rankingMap} pagination={false}/>
-    </>
+    </div>
   )
 }
 
