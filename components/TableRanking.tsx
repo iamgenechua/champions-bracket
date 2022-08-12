@@ -55,7 +55,7 @@ const columns: ColumnsType<DataType> = [
     key: 'goalsScored',
   },
   {
-    title: 'Registration Date',
+    title: 'Registration Date (MM/DD/YYYY)',
     dataIndex: 'registrationDate',
     key: 'registrationDate',
   }
