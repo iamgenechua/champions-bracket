@@ -3,6 +3,7 @@ import AddTeam from './AddTeam';
 import AddMatch from './AddMatch';
 import RankingsContainer from './RankingsContainer';
 import { fetchRankings } from '../utils';
+import DeleteButton from './DeleteButton';
 
 const LandingPage = () => {
     const [latestUpdated, setLatestUpdated] = useState(null);
@@ -12,7 +13,7 @@ const LandingPage = () => {
         (async function () {
             const rankings = await fetchRankings();
             setLatestRanking(rankings);
-        })();            
+        })();
     }, [latestUpdated]);
 
     return (
@@ -20,6 +21,7 @@ const LandingPage = () => {
             <RankingsContainer latestRanking={latestRanking}/>
             <AddTeam setLatestUpdated={setLatestUpdated}/>
             <AddMatch setLatestUpdated={setLatestUpdated} />
+            <DeleteButton setLatestUpdated={setLatestUpdated}/>
         </>
     )
 }

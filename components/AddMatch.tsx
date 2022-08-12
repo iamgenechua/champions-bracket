@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, message } from 'antd';
-import { sendPostRequest } from '../utils';
-import { ADD_MATCH_ENDPOINT } from '../routes';
+import { fetchMatches, sendPostRequest } from '../utils';
+import { ADD_MATCH_ENDPOINT, MATCHES_ENDPOINT } from '../routes';
 
 const { Search } = Input;
 
@@ -61,6 +61,8 @@ const AddMatch = ({ setLatestUpdated }: AddMatchProps) => {
             // get result of sendPostRequest from utils.ts
             const result = await sendPostRequest(ADD_MATCH_ENDPOINT, body);
             setLatestUpdated(result);
+            const allMatches = await fetchMatches();
+            console.log("AM", allMatches);
             message.success(`Match between ${teamAName} and ${teamBName} added successfully`);
         } catch (error) {
             message.error(`Error adding Match. Either the teams have played each other before or one of the teams does not exist.`);
